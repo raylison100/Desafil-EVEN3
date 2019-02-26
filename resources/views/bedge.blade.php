@@ -33,7 +33,7 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <div class="form-group col-12">
+                <div class="form-group col-12" style="margin-top: 50px">
                     <p class="text-center" style="font-size: 16px"><br>Saiba como e por que fazer crachás para eventos! <a href="https://blog.even3.com.br/crachas-para-eventos-academicos/"> Clique aqui <br></a></p>
                 </div>
                 <div class="form-group  col-12">
@@ -52,11 +52,11 @@
                                             <div class="card-body col-12" >
                                                 <div class="container-fluid">
                                                     <div class="row">
-                                                        <div class="col-12 col-md-6">
+                                                        <div class="form-group col-12 col-md-6">
                                                             <img id="image" src="https://img.elo7.com.br/product/zoom/1E1459C/cracha-identificacao.jpg" width="200px" height="300px">
 <!--                                                            <label id="texto">Meu nome</label>-->
                                                         </div >
-                                                        <div class="col-12 col-md-6">
+                                                        <div class="form-group col-12 col-md-6">
                                                             <div class="form-group">
                                                                 <button type="button" class="btn btn-success btn-sm col-12">ADD TAG</button>
                                                             </div>
@@ -97,5 +97,6 @@
                 <p>By Raylison Nunes dos Santos.</p>
             </div>
         </footer>
+        <script src="../js/app.js"></script>
     </body>
 </html>
