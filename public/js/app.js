@@ -1832,9 +1832,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "BedgeComponent"
+  name: "BedgeComponent",
+  data: function data() {
+    return {
+      description: "Deu certo",
+      t_area: "",
+      image_src: ""
+    };
+  },
+  methods: {
+    teste: function teste() {
+      alert(this.description);
+    },
+    processFile: function processFile(e) {
+      var file = e.target.files[0];
+      this.image_src = URL.createObjectURL(file);
+    }
+  }
 });
 
 /***/ }),
@@ -6296,7 +6311,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.box-title[data-v-2f960ec9]{\n    font-size: 18px;\n    color: #a1cbef;\n    padding: 10px;\n    width: 300px;\n    height: 50px;\n}\n.to-fix-footer[data-v-2f960ec9] {\n    bottom: 0;\n    position: fixed;\n    width: 100%;\n    text-align: center;\n    padding: 0;\n}\n", ""]);
+exports.push([module.i, "\n.box-title[data-v-2f960ec9]{\n    font-size: 18px;\n    color: #a1cbef;\n    padding: 10px;\n    width: 300px;\n    height: 50px;\n}\n.centralizar[data-v-2f960ec9] { \n    display:         flex;\n    display: -webkit-flex;\n\n    justify-content: center;\n    align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -37526,157 +37541,196 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "row" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-xl-4" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "card rounded ",
+              staticStyle: { "min-height": "50vh" }
+            },
+            [
+              _c("div", { staticClass: "container-fluid" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "card-body col-12" }, [
+                    _c("input", {
+                      staticClass: "form-control-file border btn-sm",
+                      staticStyle: { "font-size": "12px" },
+                      attrs: { type: "file", multiple: "" },
+                      on: { change: _vm.processFile }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body col-12" }, [
+                    _c("div", { staticClass: "container-fluid" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "centralizar form-group col-12 col-xl-6"
+                          },
+                          [
+                            _c("img", {
+                              attrs: {
+                                id: "image",
+                                src: _vm.image_src,
+                                width: "300px",
+                                height: "400px"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(2)
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: " form-group col-xl-8" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "card rounded",
+              staticStyle: { "min-height": "50vh" }
+            },
+            [
+              _c("div", { staticClass: "card-body " }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.t_area,
+                      expression: "t_area"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "description",
+                    placeholder:
+                      "Copie o conteudo da planilha do excel, incluido o cabecalho e cole aqui: ",
+                    rows: "20"
+                  },
+                  domProps: { value: _vm.t_area },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.t_area = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group text-center col-12" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "button",
+              {
+                staticClass: "rounded btn btn-success btn-sm col-12 col-xl-2",
+                attrs: { type: "submit" },
+                on: { click: _vm.teste }
+              },
+              [
+                _vm._v(
+                  "BAIXAR\n                            CRACHAR\n                        "
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        {
-          staticClass: "form-group col-12",
-          staticStyle: { "margin-top": "50px" }
-        },
-        [
-          _c(
-            "p",
-            {
-              staticClass: "text-center",
-              staticStyle: { "font-size": "16px" }
-            },
-            [
-              _c("br"),
-              _vm._v("Saiba como e por que fazer crachás para eventos! "),
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href:
-                      "https://blog.even3.com.br/crachas-para-eventos-academicos/"
-                  }
-                },
-                [_vm._v(" Clique aqui "), _c("br")]
-              )
-            ]
-          )
-        ]
-      ),
+    return _c(
+      "div",
+      {
+        staticClass: "form-group col-12",
+        staticStyle: { "margin-top": "50px" }
+      },
+      [
+        _c(
+          "p",
+          { staticClass: "text-center", staticStyle: { "font-size": "16px" } },
+          [
+            _c("br"),
+            _vm._v("Saiba como e por que fazer crachás para eventos! "),
+            _c(
+              "a",
+              {
+                attrs: {
+                  href:
+                    "https://blog.even3.com.br/crachas-para-eventos-academicos/"
+                }
+              },
+              [_vm._v(" Clique aqui "), _c("br")]
+            )
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-title" }, [
+      _c("span", [_vm._v("1 - CRIAR MODELO")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12 col-xl-6" }, [
+      _c("div", { staticClass: "centralizar form-group" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success btn-sm col-8 col-xl-12",
+            attrs: { type: "button" }
+          },
+          [
+            _vm._v(
+              "ADD\n                                                        TAG\n                                                    "
+            )
+          ]
+        )
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "form-group col-12 col-md-4" }, [
-            _c("div", { staticClass: "box-title" }, [
-              _c("span", [_vm._v("1 - CRIAR MODELO")])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "card rounded ",
-                staticStyle: { "min-height": "50vh" }
-              },
-              [
-                _c("div", { staticClass: "container-fluid" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "card-body col-12" }, [
-                      _c("input", {
-                        staticClass: "form-control-file border btn-sm",
-                        staticStyle: { "font-size": "12px" },
-                        attrs: { type: "file" }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-body col-12" }, [
-                      _c("div", { staticClass: "container-fluid" }, [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", {
-                            staticClass: "form-group col-12 col-md-6"
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "form-group col-12 col-md-6" },
-                            [
-                              _c("div", { staticClass: "form-group" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-success btn-sm col-12",
-                                    attrs: { type: "button" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "ADD\n                                                        TAG\n                                                    "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", {
-                                staticClass: "form-group",
-                                attrs: { id: "app" }
-                              })
-                            ]
-                          )
-                        ])
-                      ])
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: " form-group col-12 col-md-8" }, [
-            _c("div", { staticClass: "box-title" }, [
-              _c("span", [_vm._v("2 - IMPORTA PARTICIPANTES ")])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "card rounded",
-                staticStyle: { "min-height": "50vh" }
-              },
-              [
-                _c("div", { staticClass: "card-body " }, [
-                  _c("textarea", {
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "planilha",
-                      name: "description",
-                      placeholder:
-                        "Copie o conteudo da planilha do excel, incluido o cabecalho e cole aqui: ",
-                      rows: "16"
-                    }
-                  })
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group text-center col-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "rounded btn btn-success btn-sm col-12 col-md-2",
-                  attrs: { type: "submit" }
-                },
-                [
-                  _vm._v(
-                    "BAIXAR\n                            CRACHAR\n                        "
-                  )
-                ]
-              )
-            ])
-          ])
-        ])
-      ])
+      _c("div", { staticClass: "form-group", attrs: { id: "app" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-title" }, [
+      _c("span", [_vm._v("2 - IMPORTA PARTICIPANTES ")])
     ])
   }
 ]
@@ -49986,8 +50040,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/Raylison/Desafio-EVEN3/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/Raylison/Desafio-EVEN3/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\Users\Backup\Documents\GitHub\Meus Projetos\Teste-Even3\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\Users\Backup\Documents\GitHub\Meus Projetos\Teste-Even3\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
