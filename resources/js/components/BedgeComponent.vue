@@ -6,7 +6,7 @@
         </div>
         <div class="container-fluid">
                 <div class="row">
-                    <div class="form-group col-xl-4">
+                    <div class="form-group col-xl-6">
                         <div class="box-title">
                             <span>1 - CRIAR MODELO</span>
                         </div>
@@ -20,19 +20,44 @@
                                     <div class="card-body col-12">
                                         <div class="container-fluid">                                            
                                             <div class="row">                                            
-                                                <div class="centralizar form-group col-12 col-xl-6">
-                                                    <img id="image"
-                                                        v-bind:src="image_src"
-                                                        width="300px" height="400px"> 
+                                                <div class="centralizar form-group col-12 col-xl-5">                                      
+                                                        <img id="image"
+                                                            v-bind:src="image_src"
+                                                            width="300px" height="400px">
+                                                        <label width="50px" height="1   00px" v-for="tag in tags" :key="tag.id">aqui vai ser o texto</label>                                                                                                                                    
                                                 </div>                                                
-                                                <div class="form-group col-12 col-xl-6">
+                                                <div class="form-group col-12 col-xl-7">
                                                     <div class="centralizar form-group">
-                                                        <button type="button" class="btn btn-success btn-sm col-8 col-xl-12">ADD
+                                                        <button type="button" v-on:click='addTags' class="btn btn-success btn-sm col-8 col-xl-12">ADD
                                                             TAG
                                                         </button>
                                                     </div>
-                                                    <div id="app" class="form-group">
-
+                                                    <div class="form-group col 12" v-for="tag in tags" :key="tag.id">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <label>TAG</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                            <div class=" col-3">
+                                                                <label>FONTE</label>
+                                                                <select class="form-control">
+                                                                    <option v-for="fonte in fontes" :key="fonte.id">{{fonte}}</option>                                                                                            
+                                                                </select>
+                                                            </div>
+                                                            <div class=" col-3">
+                                                                <label>SIZE</label>
+                                                                <select class="form-control">
+                                                                    <option v-for="size in sizes" :key="size.id">{{size}}</option>                                                              
+                                                                </select>
+                                                            </div>
+                                                            <div class=" col-2">
+                                                                <label style="font-size: 10px">POSICAO EX. 1X1</label>
+                                                                <input type="text" class="form-control">                                                 
+                                                            </div>
+                                                            <div class=" col-1">                                                         
+                                                                <button class="form-group btn btn-danger btn-sm" v-on:click='rmTags(tag.id)'>x</button>                                                   
+                                                            </div>
+                                                        </div>                            
                                                     </div>
                                                 </div>                        
                                             </div>
@@ -43,7 +68,7 @@
 
                         </div>
                     </div>
-                    <div class=" form-group col-xl-8">
+                    <div class=" form-group col-xl-6">
                         <div class="box-title">
                             <span>2 - IMPORTA PARTICIPANTES </span>
                         </div>
@@ -76,6 +101,10 @@
                 description: "Deu certo",
                 t_area: "",
                 image_src:"",
+                tags: [],
+                sizes:[12,13,14,15,16],
+                fontes:['normal','negrito','itálico']
+
             }
         },
         methods:{
@@ -85,6 +114,15 @@
             processFile(e) {
                  const file = e.target.files[0];
                  this.image_src = URL.createObjectURL(file);
+            },
+            addTags() {
+                if(this.tags.length < 4)
+                    this.tags.push(" ")
+                else
+                    alert("numero maximo de tags")
+            },
+             rmTags(id) {
+                this.tags.pop(id)               
             }
         }
     }

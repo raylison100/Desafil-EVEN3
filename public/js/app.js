@@ -1832,13 +1832,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BedgeComponent",
   data: function data() {
     return {
       description: "Deu certo",
       t_area: "",
-      image_src: ""
+      image_src: "",
+      tags: [],
+      sizes: [12, 13, 14, 15, 16],
+      fontes: ['normal', 'negrito', 'itálico']
     };
   },
   methods: {
@@ -1848,6 +1876,12 @@ __webpack_require__.r(__webpack_exports__);
     processFile: function processFile(e) {
       var file = e.target.files[0];
       this.image_src = URL.createObjectURL(file);
+    },
+    addTags: function addTags() {
+      if (this.tags.length < 4) this.tags.push(" ");else alert("numero maximo de tags");
+    },
+    rmTags: function rmTags(id) {
+      this.tags.pop(id);
     }
   }
 });
@@ -37546,7 +37580,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "form-group col-xl-4" }, [
+        _c("div", { staticClass: "form-group col-xl-6" }, [
           _vm._m(1),
           _vm._v(" "),
           _c(
@@ -37574,7 +37608,7 @@ var render = function() {
                           "div",
                           {
                             staticClass:
-                              "centralizar form-group col-12 col-xl-6"
+                              "centralizar form-group col-12 col-xl-5"
                           },
                           [
                             _c("img", {
@@ -37584,11 +37618,116 @@ var render = function() {
                                 width: "300px",
                                 height: "400px"
                               }
+                            }),
+                            _vm._v(" "),
+                            _vm._l(_vm.tags, function(tag) {
+                              return _c(
+                                "label",
+                                {
+                                  key: tag.id,
+                                  attrs: { width: "50px", height: "1   00px" }
+                                },
+                                [_vm._v("aqui vai ser o texto")]
+                              )
                             })
-                          ]
+                          ],
+                          2
                         ),
                         _vm._v(" "),
-                        _vm._m(2)
+                        _c(
+                          "div",
+                          { staticClass: "form-group col-12 col-xl-7" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "centralizar form-group" },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-success btn-sm col-8 col-xl-12",
+                                    attrs: { type: "button" },
+                                    on: { click: _vm.addTags }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "ADD\n                                                        TAG\n                                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.tags, function(tag) {
+                              return _c(
+                                "div",
+                                {
+                                  key: tag.id,
+                                  staticClass: "form-group col 12"
+                                },
+                                [
+                                  _c("div", { staticClass: "row" }, [
+                                    _vm._m(2, true),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: " col-3" }, [
+                                      _c("label", [_vm._v("FONTE")]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "select",
+                                        { staticClass: "form-control" },
+                                        _vm._l(_vm.fontes, function(fonte) {
+                                          return _c(
+                                            "option",
+                                            { key: fonte.id },
+                                            [_vm._v(_vm._s(fonte))]
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: " col-3" }, [
+                                      _c("label", [_vm._v("SIZE")]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "select",
+                                        { staticClass: "form-control" },
+                                        _vm._l(_vm.sizes, function(size) {
+                                          return _c(
+                                            "option",
+                                            { key: size.id },
+                                            [_vm._v(_vm._s(size))]
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._m(3, true),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: " col-1" }, [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "form-group btn btn-danger btn-sm",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.rmTags(tag.id)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("x")]
+                                      )
+                                    ])
+                                  ])
+                                ]
+                              )
+                            })
+                          ],
+                          2
+                        )
                       ])
                     ])
                   ])
@@ -37598,8 +37737,8 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: " form-group col-xl-8" }, [
-          _vm._m(3),
+        _c("div", { staticClass: " form-group col-xl-6" }, [
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "div",
@@ -37706,23 +37845,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12 col-xl-6" }, [
-      _c("div", { staticClass: "centralizar form-group" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success btn-sm col-8 col-xl-12",
-            attrs: { type: "button" }
-          },
-          [
-            _vm._v(
-              "ADD\n                                                        TAG\n                                                    "
-            )
-          ]
-        )
+    return _c("div", { staticClass: "col-3" }, [
+      _c("label", [_vm._v("TAG")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: " col-2" }, [
+      _c("label", { staticStyle: { "font-size": "10px" } }, [
+        _vm._v("POSICAO EX. 1X1")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group", attrs: { id: "app" } })
+      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
     ])
   },
   function() {
