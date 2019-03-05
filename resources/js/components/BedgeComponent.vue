@@ -20,11 +20,11 @@
                                     <div class="card-body col-12">
                                         <div class="container-fluid">                                            
                                             <div class="row">                                            
-                                                <div class="centralizar form-group col-12 col-xl-5">                                      
-                                                        <img id="image"
+                                                <div class="centralizar form-group col-12 col-xl-5">    
+                                                    <span v-for="tag in tags" :key="tag.id">{{tag.value}}</span>
+                                                    <img id="image"
                                                             v-bind:src="image_src"
-                                                            width="300px" height="400px">
-                                                        <label width="50px" height="1   00px" v-for="tag in tags" :key="tag.id">aqui vai ser o texto</label>                                                                                                                                    
+                                                            width="300px" height="400px">                                                                                                                                                                
                                                 </div>                                                
                                                 <div class="form-group col-12 col-xl-7">
                                                     <div class="centralizar form-group">
@@ -36,7 +36,7 @@
                                                         <div class="row">
                                                             <div class="col-3">
                                                                 <label>TAG</label>
-                                                                <input type="text" class="form-control">
+                                                                <input type="text" class="form-control" v-model="tag.value">
                                                             </div>
                                                             <div class=" col-3">
                                                                 <label>FONTE</label>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="card rounded" style="min-height: 50vh;">
                             <div class="card-body ">
-                                <textarea v-model="t_area" name="description"
+                                <textarea v-model="t_area"
                                           placeholder="Copie o conteudo da planilha do excel, incluido o cabecalho e cole aqui: "
                                           class="form-control" rows="20"></textarea>
                             </div>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="form-group text-center col-12">
                         <div class="form-group">
-                            <button type="submit" class="rounded btn btn-success btn-sm col-12 col-xl-2" v-on:click='teste'>BAIXAR
+                            <button type="submit" class="rounded btn btn-success btn-sm col-12 col-xl-2" v-on:click='addTArea'>BAIXAR
                                 CRACHAR
                             </button>
                         </div>
@@ -98,18 +98,17 @@
 
         data() {    
             return{
-                description: "Deu certo",
                 t_area: "",
                 image_src:"",
                 tags: [],
                 sizes:[12,13,14,15,16],
-                fontes:['normal','negrito','itálico']
+                fontes:['normal','negrito','itálico'],
 
             }
         },
         methods:{
-            teste(){
-                alert(this.description)
+            addTArea(){
+                
             },
             processFile(e) {
                  const file = e.target.files[0];
@@ -117,7 +116,9 @@
             },
             addTags() {
                 if(this.tags.length < 4)
-                    this.tags.push(" ")
+                {
+                    this.tags.push({value: ''});
+                }                    
                 else
                     alert("numero maximo de tags")
             },
@@ -137,7 +138,7 @@
         height: 50px;
     }
     .centralizar { 
-        display:         flex;
+        display:  flex;
         display: -webkit-flex;
 
         justify-content: center;

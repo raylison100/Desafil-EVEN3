@@ -1861,7 +1861,6 @@ __webpack_require__.r(__webpack_exports__);
   name: "BedgeComponent",
   data: function data() {
     return {
-      description: "Deu certo",
       t_area: "",
       image_src: "",
       tags: [],
@@ -1870,15 +1869,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    teste: function teste() {
-      alert(this.description);
-    },
+    addTArea: function addTArea() {},
     processFile: function processFile(e) {
       var file = e.target.files[0];
       this.image_src = URL.createObjectURL(file);
     },
     addTags: function addTags() {
-      if (this.tags.length < 4) this.tags.push(" ");else alert("numero maximo de tags");
+      if (this.tags.length < 4) {
+        this.tags.push({
+          value: ''
+        });
+      } else alert("numero maximo de tags");
     },
     rmTags: function rmTags(id) {
       this.tags.pop(id);
@@ -6345,7 +6346,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.box-title[data-v-2f960ec9]{\n    font-size: 18px;\n    color: #a1cbef;\n    padding: 10px;\n    width: 300px;\n    height: 50px;\n}\n.centralizar[data-v-2f960ec9] { \n    display:         flex;\n    display: -webkit-flex;\n\n    justify-content: center;\n    align-items: center;\n}\n", ""]);
+exports.push([module.i, "\n.box-title[data-v-2f960ec9]{\n    font-size: 18px;\n    color: #a1cbef;\n    padding: 10px;\n    width: 300px;\n    height: 50px;\n}\n.centralizar[data-v-2f960ec9] { \n    display:  flex;\n    display: -webkit-flex;\n\n    justify-content: center;\n    align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -37611,6 +37612,12 @@ var render = function() {
                               "centralizar form-group col-12 col-xl-5"
                           },
                           [
+                            _vm._l(_vm.tags, function(tag) {
+                              return _c("span", { key: tag.id }, [
+                                _vm._v(_vm._s(tag.value))
+                              ])
+                            }),
+                            _vm._v(" "),
                             _c("img", {
                               attrs: {
                                 id: "image",
@@ -37618,17 +37625,6 @@ var render = function() {
                                 width: "300px",
                                 height: "400px"
                               }
-                            }),
-                            _vm._v(" "),
-                            _vm._l(_vm.tags, function(tag) {
-                              return _c(
-                                "label",
-                                {
-                                  key: tag.id,
-                                  attrs: { width: "50px", height: "1   00px" }
-                                },
-                                [_vm._v("aqui vai ser o texto")]
-                              )
                             })
                           ],
                           2
@@ -37668,7 +37664,35 @@ var render = function() {
                                 },
                                 [
                                   _c("div", { staticClass: "row" }, [
-                                    _vm._m(2, true),
+                                    _c("div", { staticClass: "col-3" }, [
+                                      _c("label", [_vm._v("TAG")]),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: tag.value,
+                                            expression: "tag.value"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { type: "text" },
+                                        domProps: { value: tag.value },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              tag,
+                                              "value",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    ]),
                                     _vm._v(" "),
                                     _c("div", { staticClass: " col-3" }, [
                                       _c("label", [_vm._v("FONTE")]),
@@ -37704,7 +37728,7 @@ var render = function() {
                                       )
                                     ]),
                                     _vm._v(" "),
-                                    _vm._m(3, true),
+                                    _vm._m(2, true),
                                     _vm._v(" "),
                                     _c("div", { staticClass: " col-1" }, [
                                       _c(
@@ -37738,7 +37762,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: " form-group col-xl-6" }, [
-          _vm._m(4),
+          _vm._m(3),
           _vm._v(" "),
           _c(
             "div",
@@ -37759,7 +37783,6 @@ var render = function() {
                   ],
                   staticClass: "form-control",
                   attrs: {
-                    name: "description",
                     placeholder:
                       "Copie o conteudo da planilha do excel, incluido o cabecalho e cole aqui: ",
                     rows: "20"
@@ -37786,7 +37809,7 @@ var render = function() {
               {
                 staticClass: "rounded btn btn-success btn-sm col-12 col-xl-2",
                 attrs: { type: "submit" },
-                on: { click: _vm.teste }
+                on: { click: _vm.addTArea }
               },
               [
                 _vm._v(
@@ -37839,16 +37862,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-title" }, [
       _c("span", [_vm._v("1 - CRIAR MODELO")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-3" }, [
-      _c("label", [_vm._v("TAG")]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
     ])
   },
   function() {
