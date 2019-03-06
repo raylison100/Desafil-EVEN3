@@ -1863,9 +1863,44 @@ __webpack_require__.r(__webpack_exports__);
     return {
       t_area: "",
       image_src: "",
+      selectFonte: "",
+      selectSize: "",
       tags: [],
-      sizes: [12, 13, 14, 15, 16],
-      fontes: ['normal', 'negrito', 'itálico']
+      sizes: [{
+        "value": '12px',
+        "size": 12
+      }, {
+        "value": '13px',
+        "size": 13
+      }, {
+        "value": '14px',
+        "size": 14
+      }, {
+        "value": '15px',
+        "size": 15
+      }, {
+        "value": '16px',
+        "size": 16
+      }],
+      fontes: [{
+        "value": 'normal',
+        "fonte": 'normal'
+      }, {
+        "value": 'bold',
+        "fonte": 'negrito'
+      }, {
+        "value": 'italic',
+        "fonte": 'itálico'
+      }],
+      tag_style: [{
+        'fonte_size': selectSize
+      }, {
+        'font_style': selectFonte
+      }, {
+        'width': ''
+      }, {
+        'height': ''
+      }]
     };
   },
   methods: {
@@ -1879,10 +1914,19 @@ __webpack_require__.r(__webpack_exports__);
         this.tags.push({
           value: ''
         });
+        this.tag_style.push({
+          'fonte_size': ''
+        }, {
+          'font_style': ''
+        }, {
+          'width': ''
+        }, {
+          'height': ''
+        });
       } else alert("numero maximo de tags");
     },
     rmTags: function rmTags(id) {
-      this.tags.pop(id);
+      this.tags.pop(id), this.tag_style.pop(id);
     }
   }
 });
@@ -37699,12 +37743,47 @@ var render = function() {
                                       _vm._v(" "),
                                       _c(
                                         "select",
-                                        { staticClass: "form-control" },
+                                        {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.selectFonte,
+                                              expression: "selectFonte"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          on: {
+                                            change: function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.selectFonte = $event.target
+                                                .multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            }
+                                          }
+                                        },
                                         _vm._l(_vm.fontes, function(fonte) {
                                           return _c(
                                             "option",
-                                            { key: fonte.id },
-                                            [_vm._v(_vm._s(fonte))]
+                                            {
+                                              key: fonte.id,
+                                              domProps: { value: fonte.value }
+                                            },
+                                            [_vm._v(_vm._s(fonte.fonte))]
                                           )
                                         }),
                                         0
@@ -37716,12 +37795,47 @@ var render = function() {
                                       _vm._v(" "),
                                       _c(
                                         "select",
-                                        { staticClass: "form-control" },
+                                        {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.selectSize,
+                                              expression: "selectSize"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          on: {
+                                            change: function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.selectSize = $event.target
+                                                .multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            }
+                                          }
+                                        },
                                         _vm._l(_vm.sizes, function(size) {
                                           return _c(
                                             "option",
-                                            { key: size.id },
-                                            [_vm._v(_vm._s(size))]
+                                            {
+                                              key: size.id,
+                                              domProps: { value: size.value }
+                                            },
+                                            [_vm._v(_vm._s(size.size))]
                                           )
                                         }),
                                         0

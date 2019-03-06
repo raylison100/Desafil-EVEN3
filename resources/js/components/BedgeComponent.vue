@@ -21,7 +21,7 @@
                                         <div class="container-fluid">                                            
                                             <div class="row">                                            
                                                 <div class="centralizar form-group col-12 col-xl-5">    
-                                                    <span v-for="tag in tags" :key="tag.id">{{tag.value}}</span>
+                                                    <span v-for="tag in tags" :key="tag.id" >{{tag.value}}</span>
                                                     <img id="image"
                                                             v-bind:src="image_src"
                                                             width="300px" height="400px">                                                                                                                                                                
@@ -40,14 +40,14 @@
                                                             </div>
                                                             <div class=" col-3">
                                                                 <label>FONTE</label>
-                                                                <select class="form-control">
-                                                                    <option v-for="fonte in fontes" :key="fonte.id">{{fonte}}</option>                                                                                            
+                                                                <select class="form-control"  v-model="selectFonte">
+                                                                    <option v-for="fonte in fontes" :key="fonte.id"  :value="fonte.value">{{fonte.fonte}}</option>                                                                                            
                                                                 </select>
                                                             </div>
                                                             <div class=" col-3">
                                                                 <label>SIZE</label>
-                                                                <select class="form-control">
-                                                                    <option v-for="size in sizes" :key="size.id">{{size}}</option>                                                              
+                                                                <select class="form-control" v-model="selectSize">
+                                                                    <option v-for="size in sizes" :key="size.id" :value="size.value">{{size.size}}</option>                                                              
                                                                 </select>
                                                             </div>
                                                             <div class=" col-2">
@@ -100,9 +100,51 @@
             return{
                 t_area: "",
                 image_src:"",
+                selectFonte:"",
+                selectSize:"",
                 tags: [],
-                sizes:[12,13,14,15,16],
-                fontes:['normal','negrito','itálico'],
+                sizes:[
+                    {   
+                        "value" :'12px',
+                        "size"  : 12 
+                    },
+                    {   
+                        "value" :'13px',
+                        "size"  : 13 
+                    },
+                    {   
+                        "value" :'14px',
+                        "size"  : 14 
+                    },
+                    {   
+                        "value" :'15px',
+                        "size"  : 15 
+                    },
+                    {   
+                        "value" :'16px',
+                        "size"  : 16 
+                    },                
+                ],
+                fontes:[
+                    {   
+                        "value" : 'normal',
+                        "fonte"  : 'normal'
+                    },
+                    {   
+                        "value" : 'bold',
+                        "fonte"  : 'negrito'
+                    },
+                    {   
+                        "value" : 'italic',
+                        "fonte"  : 'itálico'
+                    },
+                ],
+                tag_style: [
+                    {'fonte_size' : selectSize},
+                    {'font_style' : selectFonte}, 
+                    {'width'      : ''},
+                    {'height'     : ''},
+                ],
 
             }
         },
@@ -118,13 +160,19 @@
                 if(this.tags.length < 4)
                 {
                     this.tags.push({value: ''});
+                    this.tag_style.push(
+                        {'fonte_size' : ''},
+                        {'font_style' : ''}, 
+                        {'width'      : ''},
+                        {'height'     : ''});
                 }                    
                 else
                     alert("numero maximo de tags")
             },
              rmTags(id) {
-                this.tags.pop(id)               
-            }
+                this.tags.pop(id) ,
+                this.tag_style.pop(id)              
+            },
         }
     }
 </script>
