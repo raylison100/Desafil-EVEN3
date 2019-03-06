@@ -52,7 +52,7 @@
                                                             </div>
                                                             <div class=" col-2">
                                                                 <label style="font-size: 10px">POSICAO EX. 1X1</label>
-                                                                <input type="text" class="form-control">                                                 
+                                                                <input type="text" class="form-control" v-model="selectPosicao" @change="addPosicao(index)">                                                 
                                                             </div>
                                                             <div class=" col-1">                                                         
                                                                 <button class="form-group btn btn-danger btn-sm" v-on:click='rmTags(tag.id)'>x</button>                                                   
@@ -102,6 +102,7 @@
                 image_src: "",
                 selectFonte: "",
                 selectSize: "",
+                selectPosicao : "",
                 tags: [ ],
                 sizes:[
                     {   
@@ -236,8 +237,9 @@
                     this.tags.push({value: ''});
                     this.tag_style.push(
                         [
-                            {"font-size"  : '23px'},
-                            {"font-style"  : 'normal'},
+                            {'position'     : 'absolute'},
+                            {"font-size"    : '23px'},
+                            {"font-style"   : 'normal'},
                         ]                        
                     );
                 }                    
@@ -249,13 +251,30 @@
                 this.tag_style.pop(id)              
             },
             addSize(id){
-                this.tag_style[id][0] = {'font-size' : this.selectSize};
+                this.tag_style[id][1] = {'font-size' : this.selectSize};
             },
             addFonte(id){
                 if(this.selectFonte == 'bold')
-                    this.tag_style[id][1] = {'font-weight' : this.selectFonte};
+                    this.tag_style[id][2] = {'font-weight' : this.selectFonte};
                 else
-                    this.tag_style[id][1] = {'font-style' : this.selectFonte};
+                    this.tag_style[id][2] = {'font-style' : this.selectFonte};
+            },
+            addPosicao(id){
+                this.selectPosicao.split('x')
+                console.log(Number(this.selectPosicao))
+                if(Number(this.selectPosicao[0]) > 100)
+                    this.tag_style[id][3] = {'top' : '90cm'};
+                else if( Number(this.selectPosicao[0]) < 0)
+                   this.tag_style[id][3] = {'top' : '0cm'}; 
+                else
+                    this.tag_style[id][3] = {'top' : this.selectPosicao[0]+'cm'};
+
+                if(Number(this.selectPosicao[2]) > 65)
+                    this.tag_style[id][4] = {'left' : '65cm'};
+                else if (Number(this.selectPosicao[2]) < 0)
+                    this.tag_style[id][4] = {'left' :'0cm'};
+                else
+                    this.tag_style[id][4] = {'left' : this.selectPosicao[2]+'cm'};
             }
 
         }

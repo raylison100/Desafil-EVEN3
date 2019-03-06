@@ -1865,6 +1865,7 @@ __webpack_require__.r(__webpack_exports__);
       image_src: "",
       selectFonte: "",
       selectSize: "",
+      selectPosicao: "",
       tags: [],
       sizes: [{
         "value": '12px',
@@ -1967,6 +1968,8 @@ __webpack_require__.r(__webpack_exports__);
           value: ''
         });
         this.tag_style.push([{
+          'position': 'absolute'
+        }, {
           "font-size": '23px'
         }, {
           "font-style": 'normal'
@@ -1977,15 +1980,33 @@ __webpack_require__.r(__webpack_exports__);
       this.tags.pop(id), this.tag_style.pop(id);
     },
     addSize: function addSize(id) {
-      this.tag_style[id][0] = {
+      this.tag_style[id][1] = {
         'font-size': this.selectSize
       };
     },
     addFonte: function addFonte(id) {
-      if (this.selectFonte == 'bold') this.tag_style[id][1] = {
+      if (this.selectFonte == 'bold') this.tag_style[id][2] = {
         'font-weight': this.selectFonte
-      };else this.tag_style[id][1] = {
+      };else this.tag_style[id][2] = {
         'font-style': this.selectFonte
+      };
+    },
+    addPosicao: function addPosicao(id) {
+      this.selectPosicao.split('x');
+      console.log(Number(this.selectPosicao));
+      if (Number(this.selectPosicao[0]) > 100) this.tag_style[id][3] = {
+        'top': '90cm'
+      };else if (Number(this.selectPosicao[0]) < 0) this.tag_style[id][3] = {
+        'top': '0cm'
+      };else this.tag_style[id][3] = {
+        'top': this.selectPosicao[0] + 'cm'
+      };
+      if (Number(this.selectPosicao[2]) > 65) this.tag_style[id][4] = {
+        'left': '65cm'
+      };else if (Number(this.selectPosicao[2]) < 0) this.tag_style[id][4] = {
+        'left': '0cm'
+      };else this.tag_style[id][4] = {
+        'left': this.selectPosicao[2] + 'cm'
       };
     }
   }
@@ -37914,7 +37935,41 @@ var render = function() {
                                       )
                                     ]),
                                     _vm._v(" "),
-                                    _vm._m(2, true),
+                                    _c("div", { staticClass: " col-2" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticStyle: { "font-size": "10px" }
+                                        },
+                                        [_vm._v("POSICAO EX. 1X1")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.selectPosicao,
+                                            expression: "selectPosicao"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { type: "text" },
+                                        domProps: { value: _vm.selectPosicao },
+                                        on: {
+                                          change: function($event) {
+                                            return _vm.addPosicao(index)
+                                          },
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.selectPosicao =
+                                              $event.target.value
+                                          }
+                                        }
+                                      })
+                                    ]),
                                     _vm._v(" "),
                                     _c("div", { staticClass: " col-1" }, [
                                       _c(
@@ -37948,7 +38003,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: " form-group col-xl-6" }, [
-          _vm._m(3),
+          _vm._m(2),
           _vm._v(" "),
           _c(
             "div",
@@ -38048,18 +38103,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "box-title" }, [
       _c("span", [_vm._v("1 - CRIAR MODELO")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: " col-2" }, [
-      _c("label", { staticStyle: { "font-size": "10px" } }, [
-        _vm._v("POSICAO EX. 1X1")
-      ]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
     ])
   },
   function() {
