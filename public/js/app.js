@@ -1881,6 +1881,66 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         "value": '16px',
         "size": 16
+      }, {
+        "value": '17px',
+        "size": 17
+      }, {
+        "value": '18px',
+        "size": 18
+      }, {
+        "value": '19px',
+        "size": 19
+      }, {
+        "value": '20px',
+        "size": 20
+      }, {
+        "value": '21px',
+        "size": 21
+      }, {
+        "value": '22px',
+        "size": 22
+      }, {
+        "value": '23px',
+        "size": 23
+      }, {
+        "value": '24px',
+        "size": 24
+      }, {
+        "value": '25px',
+        "size": 25
+      }, {
+        "value": '26px',
+        "size": 26
+      }, {
+        "value": '27px',
+        "size": 27
+      }, {
+        "value": '28px',
+        "size": 28
+      }, {
+        "value": '29px',
+        "size": 29
+      }, {
+        "value": '30px',
+        "size": 30
+      }, {
+        "value": '31px',
+        "size": 31
+      }, {
+        "value": '32px',
+        "size": 32
+      }, {
+        "value": '33px',
+        "size": 33
+      }, {
+        "value": '34px',
+        "size": 34
+      }, {
+        "value": '35px',
+        "size": 35
+      }, {
+        "value": '36px',
+        "size": 36
       }],
       fontes: [{
         "value": 'normal',
@@ -1892,15 +1952,7 @@ __webpack_require__.r(__webpack_exports__);
         "value": 'italic',
         "fonte": 'itálico'
       }],
-      tag_style: [{
-        'fonte_size': selectSize
-      }, {
-        'font_style': selectFonte
-      }, {
-        'width': ''
-      }, {
-        'height': ''
-      }]
+      tag_style: []
     };
   },
   methods: {
@@ -1914,19 +1966,27 @@ __webpack_require__.r(__webpack_exports__);
         this.tags.push({
           value: ''
         });
-        this.tag_style.push({
-          'fonte_size': ''
+        this.tag_style.push([{
+          "font-size": '23px'
         }, {
-          'font_style': ''
-        }, {
-          'width': ''
-        }, {
-          'height': ''
-        });
+          "font-style": 'normal'
+        }]);
       } else alert("numero maximo de tags");
     },
     rmTags: function rmTags(id) {
       this.tags.pop(id), this.tag_style.pop(id);
+    },
+    addSize: function addSize(id) {
+      this.tag_style[id][0] = {
+        'font-size': this.selectSize
+      };
+    },
+    addFonte: function addFonte(id) {
+      if (this.selectFonte == 'bold') this.tag_style[id][1] = {
+        'font-weight': this.selectFonte
+      };else this.tag_style[id][1] = {
+        'font-style': this.selectFonte
+      };
     }
   }
 });
@@ -37656,12 +37716,6 @@ var render = function() {
                               "centralizar form-group col-12 col-xl-5"
                           },
                           [
-                            _vm._l(_vm.tags, function(tag) {
-                              return _c("span", { key: tag.id }, [
-                                _vm._v(_vm._s(tag.value))
-                              ])
-                            }),
-                            _vm._v(" "),
                             _c("img", {
                               attrs: {
                                 id: "image",
@@ -37669,6 +37723,14 @@ var render = function() {
                                 width: "300px",
                                 height: "400px"
                               }
+                            }),
+                            _vm._v(" "),
+                            _vm._l(_vm.tags, function(tag, index) {
+                              return _c(
+                                "span",
+                                { key: tag.id, style: _vm.tag_style[index] },
+                                [_vm._v(_vm._s(tag.value))]
+                              )
                             })
                           ],
                           2
@@ -37699,7 +37761,7 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._l(_vm.tags, function(tag) {
+                            _vm._l(_vm.tags, function(tag, index) {
                               return _c(
                                 "div",
                                 {
@@ -37754,26 +37816,31 @@ var render = function() {
                                           ],
                                           staticClass: "form-control",
                                           on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.selectFonte = $event.target
-                                                .multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            }
+                                            change: [
+                                              function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
+                                                    }
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.selectFonte = $event.target
+                                                  .multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              },
+                                              function($event) {
+                                                return _vm.addFonte(index)
+                                              }
+                                            ]
                                           }
                                         },
                                         _vm._l(_vm.fontes, function(fonte) {
@@ -37806,26 +37873,31 @@ var render = function() {
                                           ],
                                           staticClass: "form-control",
                                           on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.selectSize = $event.target
-                                                .multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
-                                            }
+                                            change: [
+                                              function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
+                                                    }
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.selectSize = $event.target
+                                                  .multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              },
+                                              function($event) {
+                                                return _vm.addSize(index)
+                                              }
+                                            ]
                                           }
                                         },
                                         _vm._l(_vm.sizes, function(size) {
@@ -38121,7 +38193,7 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.7
+ * Vue.js v2.6.8
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -38599,7 +38671,7 @@ var config = ({
  * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
  * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
  */
-var unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
+var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
 
 /**
  * Check if a string starts with $ or _
@@ -38624,7 +38696,7 @@ function def (obj, key, val, enumerable) {
 /**
  * Parse simple path.
  */
-var bailRE = new RegExp(("[^" + unicodeLetters + ".$_\\d]"));
+var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
 function parsePath (path) {
   if (bailRE.test(path)) {
     return
@@ -39528,7 +39600,7 @@ function checkComponents (options) {
 }
 
 function validateComponentName (name) {
-  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + unicodeLetters + "]*$")).test(name)) {
+  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
     warn(
       'Invalid component name: "' + name + '". Component names ' +
       'should conform to valid custom element name in html5 specification.'
@@ -41732,17 +41804,21 @@ function resolveAsyncComponent (
     return factory.resolved
   }
 
+  var owner = currentRenderingInstance;
+  if (isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
+    // already pending
+    factory.owners.push(owner);
+  }
+
   if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
     return factory.loadingComp
   }
 
-  var owner = currentRenderingInstance;
-  if (isDef(factory.owners)) {
-    // already pending
-    factory.owners.push(owner);
-  } else {
+  if (!isDef(factory.owners)) {
     var owners = factory.owners = [owner];
-    var sync = true;
+    var sync = true
+
+    ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
     var forceRender = function (renderCompleted) {
       for (var i = 0, l = owners.length; i < l; i++) {
@@ -43522,7 +43598,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.7';
+Vue.version = '2.6.8';
 
 /*  */
 
@@ -47324,7 +47400,7 @@ var isNonPhrasingTag = makeMap(
 // Regular Expressions for parsing tags and attributes
 var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
 var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
-var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + unicodeLetters + "]*";
+var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
 var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
 var startTagOpen = new RegExp(("^<" + qnameCapture));
 var startTagClose = /^\s*(\/?)>/;
@@ -47586,7 +47662,7 @@ function parseHTML (html, options) {
         ) {
           options.warn(
             ("tag <" + (stack[i].tag) + "> has no matching end tag."),
-            { start: stack[i].start }
+            { start: stack[i].start, end: stack[i].end }
           );
         }
         if (options.end) {
@@ -47623,7 +47699,7 @@ var dynamicArgRE = /^\[.*\]$/;
 
 var argRE = /:(.*)$/;
 var bindRE = /^:|^\.|^v-bind:/;
-var modifierRE = /\.[^.]+/g;
+var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
 
 var slotRE = /^v-slot(:|$)|^#/;
 
@@ -47800,7 +47876,7 @@ function parse (
     shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
     shouldKeepComment: options.comments,
     outputSourceRange: options.outputSourceRange,
-    start: function start (tag, attrs, unary, start$1) {
+    start: function start (tag, attrs, unary, start$1, end) {
       // check namespace.
       // inherit parent ns if there is one
       var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
@@ -47819,6 +47895,7 @@ function parse (
       {
         if (options.outputSourceRange) {
           element.start = start$1;
+          element.end = end;
           element.rawAttrsMap = element.attrsList.reduce(function (cumulated, attr) {
             cumulated[attr.name] = attr;
             return cumulated
@@ -49303,7 +49380,7 @@ function genScopedSlots (
   // components with only scoped slots to skip forced updates from parent.
   // but in some cases we have to bail-out of this optimization
   // for example if the slot contains dynamic names, has v-if or v-for on them...
-  var needsForceUpdate = Object.keys(slots).some(function (key) {
+  var needsForceUpdate = el.for || Object.keys(slots).some(function (key) {
     var slot = slots[key];
     return (
       slot.slotTargetDynamic ||
@@ -50305,8 +50382,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\Users\Backup\Documents\GitHub\Meus Projetos\Teste-Even3\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\Users\Backup\Documents\GitHub\Meus Projetos\Teste-Even3\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/Raylison/Desafio-EVEN3/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/Raylison/Desafio-EVEN3/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -21,10 +21,10 @@
                                         <div class="container-fluid">                                            
                                             <div class="row">                                            
                                                 <div class="centralizar form-group col-12 col-xl-5">    
-                                                    <span v-for="tag in tags" :key="tag.id" >{{tag.value}}</span>
                                                     <img id="image"
                                                             v-bind:src="image_src"
-                                                            width="300px" height="400px">                                                                                                                                                                
+                                                            width="300px" height="400px">   
+                                                    <span v-for="(tag , index ) in tags" :key="tag.id" :style="tag_style[index]" >{{tag.value}}</span>                                                                                                                                                             
                                                 </div>                                                
                                                 <div class="form-group col-12 col-xl-7">
                                                     <div class="centralizar form-group">
@@ -32,7 +32,7 @@
                                                             TAG
                                                         </button>
                                                     </div>
-                                                    <div class="form-group col 12" v-for="tag in tags" :key="tag.id">
+                                                    <div class="form-group col 12" v-for="(tag,index) in tags" :key="tag.id">
                                                         <div class="row">
                                                             <div class="col-3">
                                                                 <label>TAG</label>
@@ -40,13 +40,13 @@
                                                             </div>
                                                             <div class=" col-3">
                                                                 <label>FONTE</label>
-                                                                <select class="form-control"  v-model="selectFonte">
+                                                                <select class="form-control"  v-model="selectFonte" @change="addFonte(index)">
                                                                     <option v-for="fonte in fontes" :key="fonte.id"  :value="fonte.value">{{fonte.fonte}}</option>                                                                                            
                                                                 </select>
                                                             </div>
                                                             <div class=" col-3">
                                                                 <label>SIZE</label>
-                                                                <select class="form-control" v-model="selectSize">
+                                                                <select class="form-control" v-model="selectSize" @change="addSize(index)"> 
                                                                     <option v-for="size in sizes" :key="size.id" :value="size.value">{{size.size}}</option>                                                              
                                                                 </select>
                                                             </div>
@@ -99,10 +99,10 @@
         data() {    
             return{
                 t_area: "",
-                image_src:"",
-                selectFonte:"",
-                selectSize:"",
-                tags: [],
+                image_src: "",
+                selectFonte: "",
+                selectSize: "",
+                tags: [ ],
                 sizes:[
                     {   
                         "value" :'12px',
@@ -123,7 +123,87 @@
                     {   
                         "value" :'16px',
                         "size"  : 16 
-                    },                
+                    },
+                    {   
+                        "value" :'17px',
+                        "size"  : 17 
+                    }, 
+                    {   
+                        "value" :'18px',
+                        "size"  : 18 
+                    }, 
+                    {   
+                        "value" :'19px',
+                        "size"  : 19 
+                    }, 
+                    {   
+                        "value" :'20px',
+                        "size"  : 20 
+                    }, 
+                    {   
+                        "value" :'21px',
+                        "size"  : 21 
+                    }, 
+                    {   
+                        "value" :'22px',
+                        "size"  : 22 
+                    }, 
+                    {   
+                        "value" :'23px',
+                        "size"  : 23 
+                    },
+                    {   
+                        "value" :'24px',
+                        "size"  : 24 
+                    },   
+                    {   
+                        "value" :'25px',
+                        "size"  : 25 
+                    },   
+                    {   
+                        "value" :'26px',
+                        "size"  : 26 
+                    },   
+                    {   
+                        "value" :'27px',
+                        "size"  : 27 
+                    },   
+                    {   
+                        "value" :'28px',
+                        "size"  : 28 
+                    },   
+                    {   
+                        "value" :'29px',
+                        "size"  : 29 
+                    },   
+                    {   
+                        "value" :'30px',
+                        "size"  : 30 
+                    },   
+                    {   
+                        "value" :'31px',
+                        "size"  : 31 
+                    },   
+                    {   
+                        "value" :'32px',
+                        "size"  : 32 
+                    },   
+                    {   
+                        "value" :'33px',
+                        "size"  : 33 
+                    },   
+                    {   
+                        "value" :'34px',
+                        "size"  : 34 
+                    },   
+                    {   
+                        "value" :'35px',
+                        "size"  : 35 
+                    },   
+                    {   
+                        "value" :'36px',
+                        "size"  : 36 
+                    },                    
                 ],
                 fontes:[
                     {   
@@ -139,13 +219,7 @@
                         "fonte"  : 'itálico'
                     },
                 ],
-                tag_style: [
-                    {'fonte_size' : selectSize},
-                    {'font_style' : selectFonte}, 
-                    {'width'      : ''},
-                    {'height'     : ''},
-                ],
-
+                tag_style: [],
             }
         },
         methods:{
@@ -161,18 +235,29 @@
                 {
                     this.tags.push({value: ''});
                     this.tag_style.push(
-                        {'fonte_size' : ''},
-                        {'font_style' : ''}, 
-                        {'width'      : ''},
-                        {'height'     : ''});
+                        [
+                            {"font-size"  : '23px'},
+                            {"font-style"  : 'normal'},
+                        ]                        
+                    );
                 }                    
                 else
-                    alert("numero maximo de tags")
+                    alert("numero maximo de tags");
             },
              rmTags(id) {
                 this.tags.pop(id) ,
                 this.tag_style.pop(id)              
             },
+            addSize(id){
+                this.tag_style[id][0] = {'font-size' : this.selectSize};
+            },
+            addFonte(id){
+                if(this.selectFonte == 'bold')
+                    this.tag_style[id][1] = {'font-weight' : this.selectFonte};
+                else
+                    this.tag_style[id][1] = {'font-style' : this.selectFonte};
+            }
+
         }
     }
 </script>
